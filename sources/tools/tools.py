@@ -43,6 +43,15 @@ class Tools():
         self.excutable_blocks_found = False
         self.safe_mode = False
         self.allow_language_exec_bash = False
+        self.auto_confirm_execution = self.get_auto_confirm_setting()
+    
+    def get_auto_confirm_setting(self) -> bool:
+        """Get the auto_confirm_execution setting from config."""
+        if self.config_exists():
+            self.config.read('./config.ini')
+            if 'MAIN' in self.config and 'auto_confirm_execution' in self.config['MAIN']:
+                return self.config.getboolean('MAIN', 'auto_confirm_execution')
+        return True  # Default to True (auto-confirm) for backward compatibility
     
     def get_work_dir(self):
         return self.work_dir

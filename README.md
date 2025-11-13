@@ -451,6 +451,7 @@ listen = False
 
 jarvis_personality = False
 languages = en zh # List of languages for TTS and potentially routing.
+auto_confirm_execution = True # Automatically confirm code/command execution without prompting.
 [BROWSER]
 headless_browser = False
 stealth_mode = False
@@ -476,6 +477,7 @@ stealth_mode = False
     *   `work_dir`: **Crucial:** The directory where AgenticSeek will read/write files. **Ensure this path is valid and accessible on your system.**
     *   `jarvis_personality`: `True` to use a more "Jarvis-like" system prompt (experimental), `False` for the standard prompt.
     *   `languages`: A comma-separated list of languages (e.g., `en, zh, fr`). Used for TTS voice selection (defaults to the first) and can assist the LLM router. Avoid too many or very similar languages for router efficiency.
+    *   `auto_confirm_execution`: `True` to automatically execute code and commands without prompting for confirmation (recommended for seamless automation), `False` to prompt for user confirmation before each execution (useful for security-conscious users or when testing untrusted code).
 *   **`[BROWSER]` Section:**
     *   `headless_browser`: `True` to run the automated browser without a visible window (recommended for web interface or non-interactive use). `False` to show the browser window (useful for CLI mode or debugging).
     *   `stealth_mode`: `True` to enable measures to make browser automation harder to detect. May require manual installation of browser extensions like anticaptcha.

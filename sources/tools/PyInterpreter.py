@@ -24,9 +24,9 @@ class PyInterpreter(Tools):
         Execute python code.
         """
         output = ""
-        # Auto-approve code execution for API mode
-        # if safety and input("Execute code ? y/n") != "y":
-        #     return "Code rejected by user."
+        # Prompt for confirmation if auto_confirm_execution is disabled
+        if not self.auto_confirm_execution and input("Execute code? (y/n): ").lower() != "y":
+            return "Code rejected by user."
         stdout_buffer = StringIO()
         sys.stdout = stdout_buffer
         global_vars = {

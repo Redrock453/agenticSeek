@@ -36,9 +36,9 @@ class BashInterpreter(Tools):
         """
         Execute bash commands and display output in real-time.
         """
-        # Auto-approve commands for API mode
-        # if safety and input("Execute command? y/n ") != "y":
-        #     return "Command rejected by user."
+        # Prompt for confirmation if auto_confirm_execution is disabled
+        if not self.auto_confirm_execution and input("Execute command? (y/n): ").lower() != "y":
+            return "Command rejected by user."
     
         concat_output = ""
         for command in commands:
