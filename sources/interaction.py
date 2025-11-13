@@ -4,7 +4,6 @@ from typing import List, Tuple, Type, Dict
 from sources.text_to_speech import Speech
 from sources.utility import pretty_print, animate_thinking
 from sources.router import AgentRouter
-from sources.speech_to_text import AudioTranscriber, AudioRecorder
 import threading
 
 
@@ -56,6 +55,7 @@ class Interaction:
     def initialize_stt(self):
         """Initialize STT."""
         if not self.transcriber or not self.recorder:
+            from sources.speech_to_text import AudioTranscriber, AudioRecorder
             animate_thinking("Initializing speech recognition...", color="status")
             self.transcriber = AudioTranscriber(self.ai_name, verbose=False)
             self.recorder = AudioRecorder()
@@ -117,6 +117,7 @@ class Interaction:
     
     def transcription_job(self) -> str:
         """Transcribe the audio from the microphone."""
+        from sources.speech_to_text import AudioTranscriber, AudioRecorder
         self.recorder = AudioRecorder(verbose=True)
         self.transcriber = AudioTranscriber(self.ai_name, verbose=True)
         self.transcriber.start()

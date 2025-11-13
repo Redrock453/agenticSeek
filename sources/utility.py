@@ -1,6 +1,22 @@
 
-from colorama import Fore
-from termcolor import colored
+try:
+    from colorama import Fore
+except Exception:
+    class _DummyFore:
+        RESET = ''
+        GREEN = ''
+        RED = ''
+        LIGHTGREEN_EX = ''
+        LIGHTBLUE_EX = ''
+        YELLOW = ''
+        LIGHTCYAN_EX = ''
+    Fore = _DummyFore()
+
+try:
+    from termcolor import colored
+except Exception:
+    def colored(text, color):
+        return text
 import platform
 import threading
 import itertools

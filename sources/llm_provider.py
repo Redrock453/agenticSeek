@@ -8,8 +8,15 @@ from urllib.parse import urlparse
 import httpx
 import requests
 from dotenv import load_dotenv
-from ollama import Client as OllamaClient
-from openai import OpenAI
+try:
+    from ollama import Client as OllamaClient
+except Exception:
+    OllamaClient = None
+
+try:
+    from openai import OpenAI
+except Exception:
+    OpenAI = None
 
 from sources.logger import Logger
 from sources.utility import pretty_print, animate_thinking
@@ -32,12 +39,13 @@ class Provider:
             "together": self.together_fn,
             "dsk_deepseek": self.dsk_deepseek,
             "openrouter": self.openrouter_fn,
-            "test": self.test_fn
+            "test": self.test_fn,
+            "anthropic": self.anthropic_fn
         }
         self.logger = Logger("provider.log")
         self.api_key = None
         self.internal_url, self.in_docker = self.get_internal_url()
-        self.unsafe_providers = ["openai", "deepseek", "dsk_deepseek", "together", "google", "openrouter"]
+        self.unsafe_providers = ["openai", "deepseek", "dsk_deepseek", "together", "google", "openrouter", "anthropic"]
         if self.provider_name not in self.available_providers:
             raise ValueError(f"Unknown provider: {provider_name}")
         if self.provider_name in self.unsafe_providers and self.is_local == False:
@@ -51,12 +59,14 @@ class Provider:
 
     def get_api_key(self, provider):
         load_dotenv()
-        api_key_var = f"{provider.upper()}_API_KEY"
-        api_key = os.getenv(api_key_var)
-        if not api_key:
-            pretty_print(f"API key {api_key_var} not found in .env file. Please add it", color="warning")
-            exit(1)
-        return api_key
+        # Try multiple common variable names for API keys (e.g., SOMEPROV_API_KEY, SOMEPROV_AUTH_TOKEN)
+        candidates = [f"{provider.upper()}_API_KEY", f"{provider.upper()}_AUTH_TOKEN", f"{provider.upper()}_TOKEN", f"{provider.upper()}_AUTH"]
+        for var in candidates:
+            val = os.getenv(var)
+            if val:
+                return val
+        pretty_print(f"API key not found for provider {provider}. Tried: {', '.join(candidates)}. Please add one to your .env", color="warning")
+        exit(1)
     
     def get_internal_url(self):
         load_dotenv()
@@ -242,7 +252,13 @@ class Provider:
         """
         from anthropic import Anthropic
 
-        client = Anthropic(api_key=self.api_key)
+        # Allow custom base URL for Anthropic-compatible endpoints (e.g., z.ai)
+        load_dotenv()
+        base_url = os.getenv("ANTHROPIC_BASE_URL") or os.getenv("ANTHROPIC_API_URL")
+        if base_url:
+            client = Anthropic(api_key=self.api_key, base_url=base_url)
+        else:
+            client = Anthropic(api_key=self.api_key)
         system_message = None
         messages = []
         for message in history:
@@ -253,6 +269,7 @@ class Provider:
                 messages.append(clean_message)
 
         try:
+            # Newer Anthropic client uses messages.create with `model` and `messages`
             response = client.messages.create(
                 model=self.model,
                 max_tokens=1024,
@@ -261,7 +278,15 @@ class Provider:
             )
             if response is None:
                 raise Exception("Anthropic response is empty.")
-            thought = response.content[0].text
+            # Response shape may vary; try to extract text robustly
+            if hasattr(response, 'content') and isinstance(response.content, (list, tuple)) and len(response.content) > 0:
+                thought = response.content[0].text
+            elif isinstance(response, dict):
+                # fallback for dict-shaped responses
+                thought = response.get('content', '') or response.get('text', '')
+            else:
+                # last resort: stringify
+                thought = str(response)
             if verbose:
                 print(thought)
             return thought

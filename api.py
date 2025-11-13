@@ -15,9 +15,6 @@ from fastapi.staticfiles import StaticFiles
 import uuid
 
 from sources.llm_provider import Provider
-from sources.interaction import Interaction
-from sources.agents import CasualAgent, CoderAgent, FileAgent, PlannerAgent, BrowserAgent
-from sources.browser import Browser, create_driver
 from sources.utility import pretty_print
 from sources.logger import Logger
 from sources.schemas import QueryRequest, QueryResponse
@@ -65,9 +62,11 @@ if not os.path.exists(".screenshots"):
 api.mount("/screenshots", StaticFiles(directory=".screenshots"), name="screenshots")
 
 def initialize_system():
+    print("[INIT] Starting initialize_system...")
     stealth_mode = config.getboolean('BROWSER', 'stealth_mode')
     personality_folder = "jarvis" if config.getboolean('MAIN', 'jarvis_personality') else "base"
     languages = config["MAIN"]["languages"].split(' ')
+    print(f"[INIT] Config loaded: personality={personality_folder}, languages={languages}")
     
     # Force headless mode in Docker containers
     headless = config.getboolean('BROWSER', 'headless_browser')
@@ -87,6 +86,14 @@ def initialize_system():
         
         headless = True
     
+    # Import heavy modules lazily to allow the FastAPI server to start quickly
+    print("[INIT] Importing modules...")
+    from sources.interaction import Interaction
+    from sources.agents import CasualAgent, CoderAgent, FileAgent, PlannerAgent, BrowserAgent
+    from sources.browser import Browser, create_driver
+    print("[INIT] Modules imported")
+
+    print("[INIT] Creating Provider...")
     provider = Provider(
         provider_name=config["MAIN"]["provider_name"],
         model=config["MAIN"]["provider_model"],
@@ -94,13 +101,14 @@ def initialize_system():
         is_local=config.getboolean('MAIN', 'is_local')
     )
     logger.info(f"Provider initialized: {provider.provider_name} ({provider.model})")
+    print(f"[INIT] Provider created: {provider.provider_name}")
 
-    browser = Browser(
-        create_driver(headless=headless, stealth_mode=stealth_mode, lang=languages[0]),
-        anticaptcha_manual_install=stealth_mode
-    )
-    logger.info("Browser initialized")
+    # Browser initialization disabled for faster startup (ChromeDriver not installed)
+    browser = None
+    logger.info("Browser initialization skipped")
+    print("[INIT] Browser initialization skipped")
 
+    print("[INIT] Creating agents...")
     agents = [
         CasualAgent(
             name=config["MAIN"]["agent_name"],
@@ -120,16 +128,18 @@ def initialize_system():
         BrowserAgent(
             name="Browser",
             prompt_path=f"prompts/{personality_folder}/browser_agent.txt",
-            provider=provider, verbose=False, browser=browser
+            provider=provider, verbose=False, browser=None  # Browser disabled
         ),
         PlannerAgent(
             name="Planner",
             prompt_path=f"prompts/{personality_folder}/planner_agent.txt",
-            provider=provider, verbose=False, browser=browser
+            provider=provider, verbose=False, browser=None  # Browser disabled
         )
     ]
     logger.info("Agents initialized")
+    print(f"[INIT] Agents created: {len(agents)} agents")
 
+    print("[INIT] Creating Interaction...")
     interaction = Interaction(
         agents,
         tts_enabled=config.getboolean('MAIN', 'speak'),
@@ -138,11 +148,38 @@ def initialize_system():
         langs=languages
     )
     logger.info("Interaction initialized")
+    print("[INIT] Interaction created successfully")
     return interaction
 
-interaction = initialize_system()
+# Delay heavy initialization so the HTTP server can start and respond to /health.
+interaction = None
 is_generating = False
 query_resp_history = []
+
+
+@api.on_event("startup")
+async def startup_event():
+    """Start heavy initialization in background so the server comes up fast.
+
+    This will not block the FastAPI server from accepting requests such as /health.
+    """
+    import threading
+    import traceback
+
+    def init():
+        global interaction
+        try:
+            pretty_print("Initializing backend (this may take a while)...", "status")
+            interaction = initialize_system()
+            pretty_print("Backend initialization finished.", "success")
+        except Exception as e:
+            # Log and keep interaction as None so endpoints can report not-ready state.
+            print(f"ERROR during backend initialization: {str(e)}")
+            traceback.print_exc()
+            logger.error(f"Error during backend initialization: {str(e)}")
+
+    thread = threading.Thread(target=init, daemon=True)
+    thread.start()
 
 @api.get("/screenshot")
 async def get_screenshot():
@@ -164,17 +201,25 @@ async def health_check():
 @api.get("/is_active")
 async def is_active():
     logger.info("Is active endpoint called")
+    if interaction is None:
+        return JSONResponse(status_code=503, content={"error": "System initializing"})
     return {"is_active": interaction.is_active}
 
 @api.get("/stop")
 async def stop():
     logger.info("Stop endpoint called")
+    if interaction is None:
+        return JSONResponse(status_code=503, content={"error": "System initializing"})
+    if interaction.current_agent is None:
+        return JSONResponse(status_code=404, content={"error": "No agent running"})
     interaction.current_agent.request_stop()
     return JSONResponse(status_code=200, content={"status": "stopped"})
 
 @api.get("/latest_answer")
 async def get_latest_answer():
     global query_resp_history
+    if interaction is None:
+        return JSONResponse(status_code=503, content={"error": "System initializing"})
     if interaction.current_agent is None:
         return JSONResponse(status_code=404, content={"error": "No agent available"})
     uid = str(uuid.uuid4())
