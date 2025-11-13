@@ -1,0 +1,202 @@
+/workspaces/agenticSeek/api.py:166: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @api.on_event("startup")
+INFO:     Started server process [108326]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:7777 (Press CTRL+C to quit)
+[AgenticSeek] Starting in Docker container...
+Initializing backend (this may take a while)...
+[INIT] Starting initialize_system...
+[INIT] Config loaded: personality=jarvis, languages=['en', 'ru']
+[INIT] Importing modules...
+INFO:     127.0.0.1:38166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38178 - "GET /screenshots/updated_screen.png?timestamp=1763002104956 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38166 - "GET /screenshots/updated_screen.png?timestamp=1763002107949 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38204 - "GET /?id=e5a42bc9-3251-41f2-b973-a51ca2714666&vscodeBrowserReqId=1763002107715 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38176 - "GET /screenshots/updated_screen.png?timestamp=1763002110959 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38166 - "GET /screenshots/updated_screen.png?timestamp=1763002114396 HTTP/1.1" 200 OK
+Speech synthesis disabled. Please install the kokoro package.
+INFO:     127.0.0.1:38166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38176 - "GET /screenshots/updated_screen.png?timestamp=1763002116944 HTTP/1.1" 200 OK
+[INIT] Modules imported
+[INIT] Creating Provider...
+Warning: you are using an API provider. You data will be sent to the cloud.
+[INIT] Provider created: anthropic
+[INIT] Browser initialization failed: Message: session not created
+from disconnected: unable to connect to renderer; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+#0 0x5dbafab5c32a <unknown>
+#1 0x5dbafa5a8e4b <unknown>
+#2 0x5dbafa5e9de2 <unknown>
+#3 0x5dbafa5e5233 <unknown>
+#4 0x5dbafa5df375 <unknown>
+#5 0x5dbafa630016 <unknown>
+#6 0x5dbafa62f736 <unknown>
+#7 0x5dbafa5edc1a <unknown>
+#8 0x5dbafa5ee921 <unknown>
+#9 0x5dbafab23239 <unknown>
+#10 0x5dbafab261e8 <unknown>
+#11 0x5dbafab0c4c9 <unknown>
+#12 0x5dbafab26db5 <unknown>
+#13 0x5dbafaaf3e93 <unknown>
+#14 0x5dbafab49098 <unknown>
+#15 0x5dbafab49273 <unknown>
+#16 0x5dbafab5b2c3 <unknown>
+#17 0x7aa93f159aa4 <unknown>
+#18 0x7aa93f1e6c3c <unknown>
+
+[INIT] Creating agents...
+[INIT] Agents created: 5 agents
+[INIT] Creating Interaction...
+[92m▉▁▁▁▁▁ Loading language utility...[39m[92m▉▉▂▁▁▁ Loading language utility...[39m[92m▉▉▉▃▁▁ Loading language utility...[39m/workspaces/agenticSeek/.venv/lib/python3.12/site-packages/transformers/models/marian/tokenization_marian.py:175: UserWarning: Recommended: pip install sacremoses.
+  warnings.warn("Recommended: pip install sacremoses.")
+[92m▉▉▉▉▅▁ Loading language utility...[39m[92m▉▉▉▉▉▇ Loading language utility...[39mINFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+[92m▉▉▉▉▉▉ Loading language utility...[39mINFO:     127.0.0.1:38166 - "GET /screenshots/updated_screen.png?timestamp=1763002118951 HTTP/1.1" 200 OK
+[92m▉▉▉▉▇▅ Loading language utility...[39m[92m▉▉▉▆▃▁ Loading language utility...[39mINFO:     127.0.0.1:38166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38176 - "GET /screenshots/updated_screen.png?timestamp=1763002119947 HTTP/1.1" 200 OK
+[92m▉▉▅▃▁▁ Loading language utility...[39m[92m▉▇▃▁▁▁ Loading language utility...[39m[92m▇▃▁▁▁▁ Loading language utility...[39m[92m▃▁▁▁▁▁ Loading language utility...[39m[92m▁▃▅▃▁▁ Loading language utility...[39m[92m▁▅▉▅▁▁ Loading language utility...[39m[92m▃▉▉▉▃▁ Loading language utility...[39m                                  [92m▉▁▁▁▁▁ Loading zero-shot pipeline...[39m[92m▉▉▂▁▁▁ Loading zero-shot pipeline...[39m[92m▉▉▉▃▁▁ Loading zero-shot pipeline...[39m[92m▉▉▉▉▅▁ Loading zero-shot pipeline...[39mINFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38166 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38188 - "GET /screenshots/updated_screen.png?timestamp=1763002122944 HTTP/1.1" 200 OK
+[92m▉▉▉▉▉▇ Loading zero-shot pipeline...[39m[92m▉▉▉▉▉▉ Loading zero-shot pipeline...[39m[92m▉▉▉▉▇▅ Loading zero-shot pipeline...[39m[92m▉▉▉▆▃▁ Loading zero-shot pipeline...[39m[92m▉▉▅▃▁▁ Loading zero-shot pipeline...[39mDevice set to use cpu
+[92m▉▇▃▁▁▁ Loading zero-shot pipeline...[39m                                    [92m▉▁▁▁▁▁ Loading LLM router model...[39m[92m▉▉▂▁▁▁ Loading LLM router model...[39m[92m▉▉▉▃▁▁ Loading LLM router model...[39m[92m▉▉▉▉▅▁ Loading LLM router model...[39m                                  [92m▉▁▁▁▁▁ Loading LLM router model...[39m[92m▉▉▂▁▁▁ Loading LLM router model...[39m[92m▉▉▉▃▁▁ Loading LLM router model...[39m[92m▉▉▉▉▅▁ Loading LLM router model...[39m[92m▉▉▉▉▉▇ Loading LLM router model...[39m[92m▉▉▉▉▉▉ Loading LLM router model...[39mINFO:     127.0.0.1:38188 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38166 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38176 - "GET /screenshots/updated_screen.png?timestamp=1763002126049 HTTP/1.1" 200 OK
+[92m▉▉▉▉▇▅ Loading LLM router model...[39m[92m▉▉▉▆▃▁ Loading LLM router model...[39m[92m▉▉▅▃▁▁ Loading LLM router model...[39m[92m▉▇▃▁▁▁ Loading LLM router model...[39m[92m▇▃▁▁▁▁ Loading LLM router model...[39m[92m▃▁▁▁▁▁ Loading LLM router model...[39m[92m▁▃▅▃▁▁ Loading LLM router model...[39m[92m▁▅▉▅▁▁ Loading LLM router model...[39m[92m▃▉▉▉▃▁ Loading LLM router model...[39m[92m▅▉▁▉▅▃ Loading LLM router model...[39m[92m▇▃▁▃▇▅ Loading LLM router model...[39m[92m▉▁▁▁▉▇ Loading LLM router model...[39m[92m▉▅▃▁▃▅ Loading LLM router model...[39mINFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38166 - "GET /screenshots/updated_screen.png?timestamp=1763002128954 HTTP/1.1" 200 OK
+[92m▇▉▅▃▅▇ Loading LLM router model...[39m[92m▅▉▇▅▇▉ Loading LLM router model...[39m[92m▃▇▉▇▉▅ Loading LLM router model...[39m[92m▁▅▇▉▇▃ Loading LLM router model...[39m[92m▁▃▅▇▅▁ Loading LLM router model...[39m[92m▉▁▁▁▁▁ Loading LLM router model...[39m[92m▉▉▂▁▁▁ Loading LLM router model...[39m[92m▉▉▉▃▁▁ Loading LLM router model...[39m[92m▉▉▉▉▅▁ Loading LLM router model...[39m[92m▉▉▉▉▉▇ Loading LLM router model...[39m[92m▉▉▉▉▉▉ Loading LLM router model...[39m[92m▉▉▉▉▇▅ Loading LLM router model...[39m[92m▉▉▉▆▃▁ Loading LLM router model...[39m[92m▉▉▅▃▁▁ Loading LLM router model...[39m[92m▉▇▃▁▁▁ Loading LLM router model...[39mINFO:     127.0.0.1:38166 - "GET /screenshots/updated_screen.png?timestamp=1763002131955 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+[92m▇▃▁▁▁▁ Loading LLM router model...[39m[92m▃▁▁▁▁▁ Loading LLM router model...[39m[92m▁▃▅▃▁▁ Loading LLM router model...[39m[92m▁▅▉▅▁▁ Loading LLM router model...[39m[92m▃▉▉▉▃▁ Loading LLM router model...[39m[92m▅▉▁▉▅▃ Loading LLM router model...[39m[92m▇▃▁▃▇▅ Loading LLM router model...[39m[92m▉▁▁▁▉▇ Loading LLM router model...[39m[92m▉▅▃▁▃▅ Loading LLM router model...[39m[92m▇▉▅▃▅▇ Loading LLM router model...[39m[92m▅▉▇▅▇▉ Loading LLM router model...[39m[92m▃▇▉▇▉▅ Loading LLM router model...[39m[92m▁▅▇▉▇▃ Loading LLM router model...[39m[92m▁▃▅▇▅▁ Loading LLM router model...[39m[92m▉▁▁▁▁▁ Loading LLM router model...[39mINFO:     127.0.0.1:38166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38176 - "GET /screenshots/updated_screen.png?timestamp=1763002134948 HTTP/1.1" 200 OK
+[92m▉▉▂▁▁▁ Loading LLM router model...[39m[92m▉▉▉▃▁▁ Loading LLM router model...[39m[92m▉▉▉▉▅▁ Loading LLM router model...[39m[92m▉▉▉▉▉▇ Loading LLM router model...[39m[92m▉▉▉▉▉▉ Loading LLM router model...[39m[92m▉▉▉▉▇▅ Loading LLM router model...[39m[92m▉▉▉▆▃▁ Loading LLM router model...[39m[92m▉▉▅▃▁▁ Loading LLM router model...[39m[92m▉▇▃▁▁▁ Loading LLM router model...[39m[92m▇▃▁▁▁▁ Loading LLM router model...[39m[92m▃▁▁▁▁▁ Loading LLM router model...[39m[92m▁▃▅▃▁▁ Loading LLM router model...[39m[92m▁▅▉▅▁▁ Loading LLM router model...[39m[92m▃▉▉▉▃▁ Loading LLM router model...[39m[92m▅▉▁▉▅▃ Loading LLM router model...[39mINFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:38166 - "GET /screenshots/updated_screen.png?timestamp=1763002137943 HTTP/1.1" 200 OK
+[92m▇▃▁▃▇▅ Loading LLM router model...[39m[92m▉▁▁▁▉▇ Loading LLM router model...[39m                                  AgenticSeek is ready.
+[INIT] Interaction created successfully
+Backend initialization finished.
+INFO:     127.0.0.1:38166 - "GET /screenshots/updated_screen.png?timestamp=1763002140943 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38188 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38176 - "GET /screenshots/updated_screen.png?timestamp=1763002143951 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /screenshots/updated_screen.png?timestamp=1763002146952 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38166 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38188 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38166 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38188 - "GET /screenshots/updated_screen.png?timestamp=1763002149947 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38166 - "GET /screenshots/updated_screen.png?timestamp=1763002152952 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38176 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:38188 - "GET /screenshots/updated_screen.png?timestamp=1763002155959 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46580 - "GET /screenshots/updated_screen.png?timestamp=1763002178652 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002178983 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002179730 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002182732 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002185743 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002188730 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002191735 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002194735 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002197731 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002200958 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002203945 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002206946 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /screenshots/updated_screen.png?timestamp=1763002210045 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002212946 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /screenshots/updated_screen.png?timestamp=1763002215948 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002218959 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /screenshots/updated_screen.png?timestamp=1763002221963 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002224963 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /screenshots/updated_screen.png?timestamp=1763002227960 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /screenshots/updated_screen.png?timestamp=1763002230948 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002233950 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002236952 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002238950 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002239958 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /screenshots/updated_screen.png?timestamp=1763002242956 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /screenshots/updated_screen.png?timestamp=1763002245959 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002248958 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002251961 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46596 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46600 - "GET /screenshots/updated_screen.png?timestamp=1763002254959 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46600 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46572 - "GET /latest_answer HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46596 - "GET /screenshots/updated_screen.png?timestamp=1763002257958 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60016 - "GET /health HTTP/1.1" 200 OK

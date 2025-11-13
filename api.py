@@ -103,10 +103,16 @@ def initialize_system():
     logger.info(f"Provider initialized: {provider.provider_name} ({provider.model})")
     print(f"[INIT] Provider created: {provider.provider_name}")
 
-    # Browser initialization disabled for faster startup (ChromeDriver not installed)
-    browser = None
-    logger.info("Browser initialization skipped")
-    print("[INIT] Browser initialization skipped")
+    # Browser initialization now enabled (ChromeDriver installed)
+    try:
+        driver = create_driver(headless, stealth_mode)
+        browser = Browser(driver)
+        logger.info("Browser initialized successfully")
+        print("[INIT] Browser initialized successfully")
+    except Exception as e:
+        print(f"[INIT] Browser initialization failed: {str(e)}")
+        logger.error(f"Browser initialization failed: {str(e)}")
+        browser = None
 
     print("[INIT] Creating agents...")
     agents = [
@@ -128,12 +134,12 @@ def initialize_system():
         BrowserAgent(
             name="Browser",
             prompt_path=f"prompts/{personality_folder}/browser_agent.txt",
-            provider=provider, verbose=False, browser=None  # Browser disabled
+            provider=provider, verbose=False, browser=browser  # Browser now enabled
         ),
         PlannerAgent(
             name="Planner",
             prompt_path=f"prompts/{personality_folder}/planner_agent.txt",
-            provider=provider, verbose=False, browser=None  # Browser disabled
+            provider=provider, verbose=False, browser=browser  # Browser now enabled
         )
     ]
     logger.info("Agents initialized")
