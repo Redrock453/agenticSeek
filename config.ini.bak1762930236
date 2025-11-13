@@ -1,0 +1,15 @@
+[MAIN]
+is_local = False
+provider_name = anthropic
+provider_model = claude-3-5-sonnet-20241022
+provider_server_address = 
+agent_name = Jarvis
+recover_last_session = False
+save_session = True
+speak = False
+listen = False
+jarvis_personality = True
+languages = en ru
+[BROWSER]
+headless_browser = True
+stealth_mode = False
