@@ -351,6 +351,36 @@ Instead, ask:
 
 ---
 
+## **Code Execution Automation**
+
+AgenticSeek can automatically execute code and commands without requiring manual confirmation each time. This feature is controlled by the `auto_confirm_execution` setting in your `config.ini` file.
+
+**Configuration:**
+
+In `config.ini`, under the `[MAIN]` section:
+```ini
+auto_confirm_execution = True  # Automatically execute without prompting (default)
+# or
+auto_confirm_execution = False # Prompt for confirmation before each execution
+```
+
+**Behavior:**
+
+- **When `auto_confirm_execution = True` (recommended):**
+  - All code and commands execute automatically without interruption
+  - Provides a seamless, automated experience
+  - No need to manually confirm "Yes" for each execution
+  - Best for trusted environments and productivity
+
+- **When `auto_confirm_execution = False`:**
+  - You'll be prompted with "(y/n)" before each code/command execution
+  - Provides an extra security layer when testing untrusted code
+  - Useful for reviewing what will be executed before it runs
+
+This setting applies to all code interpreters including Python, Bash, C, Go, and Java.
+
+---
+
 ## **Setup to run the LLM on your own server**  
 
 If you have a powerful computer or a server that you can use, but you want to use it from your laptop you have the options to run the LLM on a remote server using our custom llm server. 
