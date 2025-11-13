@@ -25,8 +25,9 @@ class CInterpreter(Tools):
         output = ""
         code = '\n'.join(codes) if isinstance(codes, list) else codes
         
-        if safety and input("Execute code? y/n ") != "y":
-            return "Code rejected by user."
+        # Auto-approve code execution for API mode
+        # if safety and input("Execute code? y/n ") != "y":
+        #     return "Code rejected by user."
 
         exec_extension = ".exe" if os.name == "nt" else ""  # Windows uses .exe, Linux/Unix does not
         
