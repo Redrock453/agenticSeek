@@ -32,6 +32,9 @@ jarvis_personality = True
 # Supported languages (space separated)
 languages = en ru
 
+# Automatically confirm code execution without prompting (True/False)
+auto_confirm_execution = True
+
 [BROWSER]
 # Run browser in headless mode (True/False)
 headless_browser = True
